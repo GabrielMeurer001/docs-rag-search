@@ -1,0 +1,23 @@
+[project]
+name = "docs-rag-search"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "fastapi",
+    "httpx",
+    "markdown-it-py",
+    "numpy",
+    "ollama",
+    "pgvector",
+    "psycopg[binary]",
+    "pydantic",
+    "uvicorn",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["postgres: requires DOCS_RAG_TEST_DATABASE_URL and creates an isolated test schema"]

@@ -1,0 +1,18 @@
+services:
+  db:
+    image: pgvector/pgvector:0.8.2-pg16
+    environment:
+      POSTGRES_DB: docs_rag
+      POSTGRES_USER: docs_rag
+      POSTGRES_PASSWORD: docs-rag-local
+    ports:
+      - "127.0.0.1:25433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docs_rag -d docs_rag"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+volumes:
+  pgdata:

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "envio",
+    "question": "Como envio um CSV e acompanho o processamento?",
+    "expected_sections": ["csv-report-worker#envio-e-acompanhamento"],
+    "expected_facts": [
+      "Enviar POST /reports com o campo multipart file.",
+      "O envio aceito retorna 202, ID e cabeçalho Location.",
+      "Consultar com GET /reports/{id} ou pela URL de Location."
+    ]
+  },
+  {
+    "id": "reentrega",
+    "question": "O que acontece se uma mensagem for entregue duas vezes?",
+    "expected_sections": ["csv-report-worker#reentregas"],
+    "expected_facts": [
+      "Uma nova entrega preserva completed e failed.",
+      "Um trabalho em processing pode ser retomado."
+    ]
+  },
+  {
+    "id": "falha",
+    "question": "Como identifico um trabalho que falhou?",
+    "expected_sections": ["csv-report-worker#falhas-de-validacao", "csv-report-worker#falhas-operacionais"],
+    "expected_facts": [
+      "Consultar GET /reports/{id} e verificar status failed.",
+      "Usar error.code para diagnosticar a causa da falha."
+    ]
+  },
+  {
+    "id": "consulta-por-id",
+    "question": "Já tenho o identificador do relatório. Como vejo se ficou pronto?",
+    "expected_sections": ["csv-report-worker#envio-e-acompanhamento"],
+    "expected_facts": [
+      "Consultar GET /reports/{id} ou Consultar por ID na interface.",
+      "O estado completed indica que o resultado está disponível."
+    ]
+  },
+  {
+    "id": "sso",
+    "question": "Como configuro autenticação por SSO?",
+    "expected_sections": [],
+    "expected_facts": []
+  },
+  {
+    "id": "exportacao-agendada",
+    "question": "Como agendo uma exportação automática dos resultados toda segunda-feira?",
+    "expected_sections": [],
+    "expected_facts": []
+  }
+]
